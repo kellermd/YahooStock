@@ -1,0 +1,62 @@
+﻿CREATE TABLE `Stock` (
+	`StockID`	INTEGER,
+	`Symbol`	TEXT UNIQUE,
+	`CurrencyCode`	TEXT,
+	`Name`	TEXT,
+	`StockExchangeCode`	TEXT,
+	PRIMARY KEY(`StockID`)
+);
+
+CREATE TABLE `Stock_Periodic` (
+	`StockPeriodicID`	INTEGER NOT NULL,
+	`StockID`	INTEGER NOT NULL,
+	`BeginDate`	INTEGER NOT NULL,
+	`EndDate`	INTEGER,
+	`DividendPayDate`	INTEGER,
+	`ExDividendDate`	INTEGER,
+	`DividendPerShare`	NUMERIC,
+	`EBITDA`	NUMERIC,
+	`MarketCapitalization`	INTEGER,
+	PRIMARY KEY(`StockPeriodicID`)
+);
+
+CREATE TABLE `StockDaily` (
+	`StockDailyID`	INTEGER NOT NULL,
+	`StockID`	INTEGER NOT NULL,
+	`AverageDailyVolume`	INTEGER,
+	`FiftyDayMovingAverage`	NUMERIC,
+	`TwoHundredDayMovingAverage`	NUMERIC,
+	`Open`	NUMERIC,
+	`PreviousClose`	NUMERIC,
+	`BookValue`	NUMERIC,
+	`DaysLow`	NUMERIC,
+	`DaysHigh`	NUMERIC,
+	`YearLow`	NUMERIC,
+	`YearHigh`	NUMERIC,
+	`DividendYield`	NUMERIC,
+	`DailyDate`	INTEGER NOT NULL,
+	PRIMARY KEY(`StockDailyID`)
+);
+
+CREATE TABLE `Stock_Estimate` (
+	`StockEstimateID`	INTEGER NOT NULL,
+	`StockID`	INTEGER NOT NULL,
+	`BeginDate`	INTEGER NOT NULL,
+	`EndDate`	INTEGER,
+	`EstimateCurrentYear`	NUMERIC,
+	`EstimateNextYear`	NUMERIC,
+	`EstimateNextQuarter`	NUMERIC,
+	`OneYearTargetPrice`	NUMERIC,
+	PRIMARY KEY(`StockEstimateID`)
+);
+
+CREATE TABLE `StockQuote` (
+	`StockQuoteID`	INTEGER NOT NULL,
+	`StockID`	INTEGER NOT NULL,
+	`Ask`	NUMERIC,
+	`Bid`	NUMERIC,
+	`TradePrice`	NUMERIC,
+	`Volume`	INTEGER,
+	`TradeDateTime`	INTEGER,
+	PRIMARY KEY(`StockQuoteID`)
+);
